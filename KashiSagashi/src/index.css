@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+.animate-gradient {
+  background-size: 300%;
+  -webkit-animation: animatedgradient 3s ease infinite alternate;
+  -moz-animation: animatedgradient 3s ease infinite alternate;
+  animation: animatedgradient 3s ease infinite alternate;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+#grad {
+  background-image: linear-gradient(to bottom right, #687eff, #80b3ff, #98e4ff, #b6fffa);
+  z-index: -100;
+}
+
+#dark_grad {
+  background-image: linear-gradient(to bottom right, #2c74b3, #205295, #144272, #0a2647);
+}
+
+.note_font {
+  font-family: "Cedarville Cursive", cursive;
+}
+
+.note {
+  width: 8vw;
+  height: 2vw;
+  background-color: #b6fffa;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+image {
+  display: block;
+}
+
+/*# sourceMappingURL=index.css.map */

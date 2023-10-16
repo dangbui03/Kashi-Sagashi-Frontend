@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "concurrently --kill-others \"vite build\" \"sass ./src/scss/style.scss ./src/style.css\"",
+    "dev": "concurrently --kill-others \"vite\" \"sass ./src/scss/style.scss ./src/index.css -w\"",
+    "build": "concurrently --kill-others \"vite build\" \"sass ./src/scss/style.scss ./src/index.css\"",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "sass": "sass --watch ./src/scss/style.scss ./src/style.css"
@@ -13,7 +13,8 @@
   "dependencies": {
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
