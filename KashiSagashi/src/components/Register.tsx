@@ -4,7 +4,7 @@ const PWD_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-_]).{8,64}$/;
 const Register = () => {
   const [mail, setMail] = useState("");
-  const [validName, setValidName] = useState(false);
+  const [validMail, setValidMail] = useState(false);
   const [mailFocus, setMailFocus] = useState(false);
 
   const [pwd, setPwd] = useState("");
@@ -19,7 +19,7 @@ const Register = () => {
     const result = EMAIL_REGEX.test(mail);
     console.log(result);
     console.log(mail);
-    setValidName(result);
+    setValidMail(result);
   }, [mail]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Register = () => {
   };
   return (
     <>
-      <h1>Sign up</h1> <br />
+      <h1>Sign up</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="formControl flex flex-col gap-2">
           <label htmlFor="mail">Email:</label>
@@ -78,7 +78,7 @@ const Register = () => {
             autoComplete="off"
             onChange={(e) => setMail(e.target.value)}
             required
-            aria-invalid={validName ? "false" : "true"}
+            aria-invalid={validMail ? "false" : "true"}
             aria-describedby="uidnote"
             onFocus={() => setMailFocus(true)}
             onBlur={() => setMailFocus(false)}
@@ -86,7 +86,7 @@ const Register = () => {
           />
           <p
             id="uidnote"
-            className={mailFocus && mail && !validName ? "" : "hidden"}
+            className={mailFocus && mail && !validMail ? "" : "hidden"}
           >
             Please enter valid email address.
           </p>
@@ -142,7 +142,7 @@ const Register = () => {
           </p>
         </div>
         <button
-          disabled={!validName || !validPwd || !validMatch ? true : false}
+          disabled={!validMail || !validPwd || !validMatch ? true : false}
         >
           Sign up
         </button>

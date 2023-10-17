@@ -41,7 +41,7 @@ const Login = () => {
   };
   return (
     <>
-      <h1>Sign In</h1> <br />
+      <h1>Sign In</h1>
       <form onSubmit={handleSubmit} className="w-full">
         <div className="formControl flex flex-col gap-2">
           <label htmlFor="mail">Email:</label>
@@ -71,7 +71,7 @@ const Login = () => {
       <p className="self-start">
         Need an Account?
         <br />
-        <a href="#">Sign Up</a>
+        <a href="#">Sign In</a>
       </p>
     </>
   );
