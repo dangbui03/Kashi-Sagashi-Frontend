@@ -1,9 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .note_font {
-  font-family: "Cedarville Cursive", cursive;
+  font-family: "Permanent Marker", cursive;
 }
 .note {
-  width: 8vw;
+  width: 7vw;
   height: 2vw;
+}
+.note1-3 {
+  background-color: #687eff;
+}
+.note4-6 {
+  background-color: #80b3ff;
+}
+.note7-9 {
+  background-color: #98e4ff;
+}
+.note10-12 {
   background-color: #b6fffa;
+}
+.c_note1-3 {
+  color: #687eff;
+}
+.c_note4-6 {
+  color: #80b3ff;
+}
+.c_note7-9 {
+  color: #98e4ff;
+}
+.c_note10-12 {
+  color: #b6fffa;
 }

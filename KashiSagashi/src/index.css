@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap");
 .animate-gradient {
-  background-size: 300%;
+  background-size: 222%;
   -webkit-animation: animatedgradient 3s ease infinite alternate;
   -moz-animation: animatedgradient 3s ease infinite alternate;
   animation: animatedgradient 3s ease infinite alternate;
@@ -18,7 +19,7 @@
   }
 }
 #grad {
-  background-image: linear-gradient(to bottom right, #687eff, #80b3ff, #98e4ff, #b6fffa);
+  background-image: linear-gradient(to bottom right, #b6fffa, #98e4ff, #80b3ff, #687eff);
   z-index: -100;
 }
 
@@ -27,13 +28,89 @@
 }
 
 .note_font {
-  font-family: "Cedarville Cursive", cursive;
+  font-family: "Permanent Marker", cursive;
 }
 
 .note {
-  width: 8vw;
+  width: 7vw;
   height: 2vw;
+}
+
+.note1-3 {
+  background-color: #687eff;
+}
+
+.note4-6 {
+  background-color: #80b3ff;
+}
+
+.note7-9 {
+  background-color: #98e4ff;
+}
+
+.note10-12 {
   background-color: #b6fffa;
+}
+
+.c_note1-3 {
+  color: #687eff;
+}
+
+.c_note4-6 {
+  color: #80b3ff;
+}
+
+.c_note7-9 {
+  color: #98e4ff;
+}
+
+.c_note10-12 {
+  color: #b6fffa;
+}
+
+.search_form {
+  width: 40vw;
+  background-color: #687eff;
+  padding: 0.5rem 1rem;
+}
+
+.search_bar {
+  color: #b6fffa;
+  border-right: #b6fffa solid 2px;
+  flex-grow: 1;
+}
+
+.search_bar::placeholder {
+  color: #b6fffa;
+}
+
+.search_bar:focus {
+  outline: none;
+}
+
+.search {
+  height: 80vh;
+}
+
+.nav_bar {
+  border-bottom: #b6fffa solid 2px;
+}
+
+.nav_item {
+  background-color: #687eff;
+  color: #b6fffa;
+}
+
+.tool_bar {
+  border-end-start-radius: 1rem;
+}
+
+.view_font {
+  font-family: "Tilt Neon", sans-serif;
+}
+
+.br-50 {
+  filter: blur(10px);
 }
 
 @tailwind base;

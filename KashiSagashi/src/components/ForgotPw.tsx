@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const ForgetPw = () => {
+export type ForgotPwProps = {
+  mailCode: boolean;
+  setMailCode: Dispatch<SetStateAction<boolean>>;
+  forgotPw: boolean;
+  setForgotPw: Dispatch<SetStateAction<boolean>>;
+};
+const ForgotPw = (ForgotPwProps: ForgotPwProps) => {
   const [mail, setMail] = useState("");
   const [validMail, setValidMail] = useState(false);
   const [mailFocus, setMailFocus] = useState(false);
@@ -72,10 +79,18 @@ const ForgetPw = () => {
             Please enter valid email address.
           </p>
         </div>
-        <button disabled={!validMail ? true : false}>Next</button>
+        <button
+          disabled={!validMail ? true : false}
+          onClick={() => {
+            ForgotPwProps.setForgotPw(false);
+            ForgotPwProps.setMailCode(true);
+          }}
+        >
+          Next
+        </button>
       </form>
     </>
   );
 };
 
-export default ForgetPw;
+export default ForgotPw;

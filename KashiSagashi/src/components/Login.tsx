@@ -1,6 +1,15 @@
 import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const Login = () => {
+export type LoginProps = {
+  register: boolean;
+  setRegister: Dispatch<SetStateAction<boolean>>;
+  login: boolean;
+  setLogin: Dispatch<SetStateAction<boolean>>;
+  forgotPw: boolean;
+  setForgotPw: Dispatch<SetStateAction<boolean>>;
+};
+const Login = (LoginProps: LoginProps) => {
   const [mail, setMail] = useState("");
   const [pwd, setPwd] = useState("");
 
@@ -41,7 +50,6 @@ const Login = () => {
   };
   return (
     <>
-      <h1>Sign In</h1>
       <form onSubmit={handleSubmit} className="w-full">
         <div className="formControl flex flex-col gap-2">
           <label htmlFor="mail">Email:</label>
@@ -68,10 +76,21 @@ const Login = () => {
         </div>
         <button>Sign In</button>
       </form>
-      <p className="self-start">
+      <p
+        onClick={() => {
+          LoginProps.setRegister(true);
+          LoginProps.setLogin(false);
+        }}
+      >
         Need an Account?
-        <br />
-        <a href="#">Sign In</a>
+      </p>
+      <p
+        onClick={() => {
+          LoginProps.setForgotPw(true);
+          LoginProps.setLogin(false);
+        }}
+      >
+        Forgot password?
       </p>
     </>
   );

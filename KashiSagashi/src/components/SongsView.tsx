@@ -4,11 +4,11 @@ import { album } from "../model/Album";
 import { artist } from "../model/Artist";
 import { band } from "../model/Band";
 
-const SongsView = (songs: song[]) => {
+const SongsView = (songs?: song[]) => {
   return (
     <section>
       <ul>
-        {songs.map((song) => {
+        {songs?.map((song) => {
           return (
             <li>
               <p>{song.name}</p>

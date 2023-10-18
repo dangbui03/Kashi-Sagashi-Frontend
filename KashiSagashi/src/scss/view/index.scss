@@ -1,0 +1,12 @@
+@forward "search";
+@forward "nav";
+@forward "tool_bar";
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap");
+
+.view_font {
+  font-family: "Tilt Neon", sans-serif;
+}
+
+.br-50 {
+  filter: blur(10px);
+}

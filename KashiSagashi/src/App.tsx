@@ -1,21 +1,25 @@
 import { useState } from "react";
-import Popup from "./components/Popup";
-import Register from "./components/Register";
-import { PopupProps } from "./components/Popup";
-import Login from "./components/Login";
 import Background from "./components/Background";
-import { SearchBar } from "./components/SearchBar";
-import ForgetPw from "./components/ForgotPw";
-import MailCode from "./components/MailCode";
 import { Routes, Route, Link } from "react-router-dom";
 import AddSong from "./components/AddSong";
 import Nav from "./components/Nav";
+import SongsView from "./components/SongsView";
+import { song } from "./model/Song";
+import { SearchBar } from "./components/SearchBar";
+import { PopupProps } from "./components/Popup";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Popup from "./components/Popup";
+import ForgotPw from "./components/ForgotPw";
+import MailCode from "./components/MailCode";
 
 function App() {
+  const songs: song[] = [];
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(false);
-  const [fpw, setFpw] = useState(false);
-  const [code, setCode] = useState(false);
+  const [forgotPw, setForgotPw] = useState(false);
+  const [mailCode, setMailCode] = useState(false);
+
   const registerPopup: PopupProps = {
     open: register,
     close: setRegister,
@@ -24,44 +28,77 @@ function App() {
   const loginPopup: PopupProps = {
     open: login,
     close: setLogin,
-    children: <Login />,
+    children: (
+      <Login
+        register={register}
+        setRegister={setRegister}
+        login={login}
+        setLogin={setLogin}
+        forgotPw={forgotPw}
+        setForgotPw={setForgotPw}
+      />
+    ),
   };
-  const fpwPopup: PopupProps = {
-    open: fpw,
-    close: setFpw,
-    children: <ForgetPw />,
+  const forgotPwPopup: PopupProps = {
+    open: forgotPw,
+    close: setForgotPw,
+    children: (
+      <ForgotPw
+        mailCode={mailCode}
+        setMailCode={setMailCode}
+        forgotPw={forgotPw}
+        setForgotPw={setForgotPw}
+      />
+    ),
   };
-  const codePopup: PopupProps = {
-    open: code,
-    close: setCode,
+  const mailCodePopup: PopupProps = {
+    open: mailCode,
+    close: setMailCode,
     children: <MailCode />,
   };
   return (
-    <section className="">
-      <Background />
-      <SearchBar />
-      <button onClick={() => setRegister(true)}>Register</button>
+    <section>
       <Popup {...registerPopup} />
-      <button onClick={() => setLogin(true)}>Login</button>
       <Popup {...loginPopup} />
-      <button onClick={() => setFpw(true)}>Forgot Password</button>
-      <Popup {...fpwPopup} />
-      <button onClick={() => setCode(true)}>Mail Code</button>
-      <Popup {...codePopup} />
-      <Nav />
-      <Routes>
-        <Route path="addSong" element={<AddSong />} />
-      </Routes>
+      <Popup {...forgotPwPopup} />
+      <Popup {...mailCodePopup} />
       <div
-        className="h-screen w-screen animate-gradient absolute top-0 z-0"
-        id="grad"
-        onClick={() => {
-          setRegister(false);
-          setLogin(false);
-          setFpw(false);
-          setCode(false);
-        }}
+        className={
+          register || login || forgotPw || mailCode
+            ? "absolute h-screen w-screen top-0 right-0 bg-black opacity-50 z-40 pointer-events-none"
+            : ""
+        }
       ></div>
+      <section
+        className=""
+        onClick={() => {
+          if (register) {
+            setRegister(false);
+          }
+          if (login) {
+            setLogin(false);
+          }
+          if (forgotPw) {
+            setForgotPw(false);
+          }
+          if (mailCode) {
+            setMailCode(false);
+          }
+        }}
+      >
+        <Nav
+          register={register}
+          setRegister={setRegister}
+          login={login}
+          setLogin={setLogin}
+        />
+        <Routes>
+          <Route path="addSong" element={<AddSong />} />
+          <Route path="verifySong" element={<SongsView {...songs} />} />
+          <Route path="searchSong" element={<SearchBar />} />
+        </Routes>
+        <Background />
+      </section>
     </section>
   );
 }

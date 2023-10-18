@@ -4,7 +4,6 @@ const MailCode = () => {
   const [code, setCode] = useState("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Success");
   };
   return (
     <>

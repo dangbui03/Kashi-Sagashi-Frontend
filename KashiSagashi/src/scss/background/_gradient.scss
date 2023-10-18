@@ -1,5 +1,5 @@
 .animate-gradient {
-  background-size: 300%;
+  background-size: 222%;
   -webkit-animation: animatedgradient 3s ease infinite alternate;
   -moz-animation: animatedgradient 3s ease infinite alternate;
   animation: animatedgradient 3s ease infinite alternate;
@@ -20,10 +20,10 @@
 #grad {
   background-image: linear-gradient(
     to bottom right,
-    #687eff,
-    #80b3ff,
+    #b6fffa,
     #98e4ff,
-    #b6fffa
+    #80b3ff,
+    #687eff
   );
   z-index: -100;
 }

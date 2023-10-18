@@ -67,7 +67,6 @@ const Register = () => {
   };
   return (
     <>
-      <h1>Sign up</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="formControl flex flex-col gap-2">
           <label htmlFor="mail">Email:</label>

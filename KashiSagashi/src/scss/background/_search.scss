@@ -1,0 +1,16 @@
+.search_form {
+  width: 40vw;
+  background-color: #687eff;
+  padding: 0.5rem 1rem;
+}
+.search_bar {
+  color: #b6fffa;
+  border-right: #b6fffa solid 2px;
+  flex-grow: 1;
+}
+.search_bar::placeholder {
+  color: #b6fffa;
+}
+.search_bar:focus {
+  outline: none;
+}
