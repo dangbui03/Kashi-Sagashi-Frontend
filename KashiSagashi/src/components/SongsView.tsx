@@ -1,45 +1,43 @@
-import React from "react";
+import { useState } from "react";
 import { song } from "../model/Song";
 import { album } from "../model/Album";
 import { artist } from "../model/Artist";
 import { band } from "../model/Band";
+import { SearchBar } from "./SearchBar";
+import SongView from "./SongView";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
-const SongsView = (songs?: song[]) => {
+export type SongViewProps = {
+  songs: song[];
+  verify?: boolean;
+};
+const SongsView = (SongViewProps: SongViewProps) => {
+  const [songs, setSongs] = useState(SongViewProps.songs);
   return (
-    <section>
-      <ul>
-        {songs?.map((song) => {
-          return (
-            <li>
-              <p>{song.name}</p>
-              <p>{song.lyric}</p>
-              <p>{song.link}</p>
-              <p>{song.release_date.toDateString()}</p>
-              {song.extendedView ? (
-                <div>
-                  <ul>
-                    {song.album.map((al) => {
-                      return <li>{(al as album).name}</li>;
-                    })}
-                  </ul>
-                  <ul>
-                    {song.artist.map((ar) => {
-                      return <li>{(ar as artist).name}</li>;
-                    })}
-                  </ul>
-                  <ul>
-                    {song.band.map((b) => {
-                      return <li>{(b as band).name}</li>;
-                    })}
-                  </ul>
-                </div>
-              ) : (
-                <div></div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+    <section className="flex-col">
+      {songs.length > 0 ? (
+        <div className="flex flex-col">
+          <div className="translate-y-40 z-20">
+            <SearchBar search="aaaa" />
+          </div>
+          <ul className="translate-y-32 flex flex-col items-center gap-5 z-20">
+            {songs.map((song) => {
+              return <SongView song={song} />;
+            })}
+          </ul>
+        </div>
+      ) : (
+        <div className="flex flex-col">
+          <SearchBar search="aa" />
+          <p
+            className="translate-y-80 text-xl text-center rounded-lg w-96 mx-auto z-30"
+            style={{ color: "#b6fffa", backgroundColor: "#687eff" }}
+          >
+            Sorry but we can't find anything like what you describe.
+          </p>
+        </div>
+      )}
     </section>
   );
 };

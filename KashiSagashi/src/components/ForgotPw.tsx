@@ -70,7 +70,7 @@ const ForgotPw = (ForgotPwProps: ForgotPwProps) => {
             aria-describedby="uidnote"
             onFocus={() => setMailFocus(true)}
             onBlur={() => setMailFocus(false)}
-            className="text-black rounded-lg"
+            className="input p-1 rounded-lg"
           />
           <p
             id="uidnote"
@@ -85,6 +85,7 @@ const ForgotPw = (ForgotPwProps: ForgotPwProps) => {
             ForgotPwProps.setForgotPw(false);
             ForgotPwProps.setMailCode(true);
           }}
+          className="input w-full my-5 rounded-xl disabled:cursor-not-allowed disabled:brightness-50"
         >
           Next
         </button>

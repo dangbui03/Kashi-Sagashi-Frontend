@@ -1,4 +1,8 @@
 import React from "react";
+import { useLocation, Link } from "react-router-dom";
+import { motion, useAnimationControls } from "framer-motion";
+import { useState, useEffect } from "react";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 export type note = {
   character: string;
@@ -17,14 +21,25 @@ const changeBackground = (notes: note[]) => {
 };
 
 const Background = () => {
+  const controls = useAnimationControls();
+  const location = useLocation();
   let notes: note[] = [];
   changeBackground(notes);
   return (
-    <div>
-      <div className="flex absolute bottom-0 w-screen place-content-between -z-50">
+    <motion.div>
+      <motion.div
+        className={
+          "fixed h-screen w-screen bg-black top-0 right-0 z-0 " +
+          (location.pathname == "/searchSong" ||
+          location.pathname == "/verifySong"
+            ? "opacity-50"
+            : "opacity-0")
+        }
+      ></motion.div>
+      <motion.div className="flex fixed bottom-0 w-screen place-content-between -z-50">
         {notes.map((note) => {
           return (
-            <div className="flex flex-col-reverse gap-2">
+            <motion.div className="flex flex-col-reverse gap-2">
               <p
                 className={
                   "text-center note_font " +
@@ -42,75 +57,138 @@ const Background = () => {
                 {note.character}
               </p>
               {note.number > 0 ? (
-                <div className="note note1-3 rounded-2xl"></div>
+                <motion.div
+                  className="note note1-3 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{
+                    duration: 1,
+                    delay: note.number * 0.5,
+                  }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 1 ? (
-                <div className="note note1-3 rounded-2xl"></div>
+                <motion.div
+                  className="note note1-3 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 2 ? (
-                <div className="note note1-3 rounded-2xl"></div>
+                <motion.div
+                  className="note note1-3 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 3 ? (
-                <div className="note note4-6 rounded-2xl"></div>
+                <motion.div
+                  className="note note4-6 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 4 ? (
-                <div className="note note4-6 rounded-2xl"></div>
+                <motion.div
+                  className="note note4-6 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 5 ? (
-                <div className="note note4-6 rounded-2xl"></div>
+                <motion.div
+                  className="note note4-6 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 6 ? (
-                <div className="note note7-9 rounded-2xl"></div>
+                <motion.div
+                  className="note note7-9 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 7 ? (
-                <div className="note note7-9 rounded-2xl"></div>
+                <motion.div
+                  className="note note7-9 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 8 ? (
-                <div className="note note7-9 rounded-2xl"></div>
+                <motion.div
+                  className="note note7-9 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 9 ? (
-                <div className="note note10-12 rounded-2xl"></div>
+                <motion.div
+                  className="note note10-12 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 10 ? (
-                <div className="note note10-12 rounded-2xl"></div>
+                <motion.div
+                  className="note note10-12 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
               {note.number > 11 ? (
-                <div className="note note10-12 rounded-2xl"></div>
+                <motion.div
+                  className="note note10-12 rounded-2xl"
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: note.number * 0.5 }}
+                ></motion.div>
               ) : (
-                <div></div>
+                <motion.div></motion.div>
               )}
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
 
-      <div
-        className="h-screen w-screen animate-gradient absolute top-0 z-0"
+      <motion.div
+        className="animate-gradient fixed top-0 z-0"
         id="grad"
-      ></div>
-    </div>
+      ></motion.div>
+    </motion.div>
   );
 };
 

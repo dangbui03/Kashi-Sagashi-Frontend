@@ -1,6 +1,12 @@
 import { useState } from "react";
-
-const MailCode = () => {
+import { Dispatch, SetStateAction } from "react";
+export type MailCodeProps = {
+  mailCode: boolean;
+  setMailCode: Dispatch<SetStateAction<boolean>>;
+  resetPw: boolean;
+  setResetPw: Dispatch<SetStateAction<boolean>>;
+};
+const MailCode = (MailCodeProps: MailCodeProps) => {
   const [code, setCode] = useState("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,10 +24,18 @@ const MailCode = () => {
             autoComplete="off"
             onChange={(e) => setCode(e.target.value)}
             required
-            className="text-black rounded-lg"
+            className="input p-1 rounded-lg"
           />
         </div>
-        <button>Submit</button>
+        <button
+          onClick={() => {
+            MailCodeProps.setResetPw(true);
+            MailCodeProps.setMailCode(false);
+          }}
+          className="input w-full my-5 rounded-xl disabled:cursor-not-allowed disabled:brightness-50"
+        >
+          Next
+        </button>
       </form>
     </>
   );

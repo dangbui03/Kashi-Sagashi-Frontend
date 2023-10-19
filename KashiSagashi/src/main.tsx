@@ -11,7 +11,10 @@ import {
   faCheck,
   faPlus,
   faRightFromBracket,
+  faCircleCheck,
+  faLeftLong,
 } from "@fortawesome/free-solid-svg-icons";
+import { CookiesProvider } from "react-cookie";
 
 library.add(
   fab,
@@ -19,14 +22,18 @@ library.add(
   faGear,
   faCheck,
   faPlus,
-  faRightFromBracket
+  faRightFromBracket,
+  faCircleCheck,
+  faLeftLong
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
+      <CookiesProvider>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </CookiesProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

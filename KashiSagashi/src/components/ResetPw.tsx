@@ -1,20 +1,14 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-_]).{8,64}$/;
-export type RegisterProps = {
-  register: boolean;
-  setRegister: Dispatch<SetStateAction<boolean>>;
+export type ResetPwProps = {
+  resetPw: boolean;
+  setResetPw: Dispatch<SetStateAction<boolean>>;
   success: boolean;
   setSuccess: Dispatch<SetStateAction<boolean>>;
 };
-const Register = (RegisterProps: RegisterProps) => {
-  const [mail, setMail] = useState("");
-  const [validMail, setValidMail] = useState(false);
-  const [mailFocus, setMailFocus] = useState(false);
-
+const ResetPw = (ResetPwProps: ResetPwProps) => {
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
@@ -24,13 +18,6 @@ const Register = (RegisterProps: RegisterProps) => {
   const [matchFocus, setMatchFocus] = useState(false);
 
   useEffect(() => {
-    const result = EMAIL_REGEX.test(mail);
-    console.log(result);
-    console.log(mail);
-    setValidMail(result);
-  }, [mail]);
-
-  useEffect(() => {
     const result = PWD_REGEX.test(pwd);
     console.log(result);
     console.log(pwd);
@@ -38,68 +25,15 @@ const Register = (RegisterProps: RegisterProps) => {
     const match = pwd === matchPwd;
     setValidMatch(match);
   }, [pwd, matchPwd]);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const v1 = USER_REGEX.test(user);
-    // const v2 = PWD_REGEX.test(pwd);
-    // if (!v1 || !v2) {
-    //   setErrMsg("Invalid Entry");
-    //   return;
-    // }
-    // try {
-    //   const response = await axios.post(
-    //     REGISTER_URL,
-    //     JSON.stringify({ user, pwd }),
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         withCredentials: true,
-    //       },
-    //     },
-    //   );
-    //   console.log(JSON.stringify(response));
-    //   setSuccess(true);
-    //   //clear input fields
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg("No Server Response");
-    //   } else if (err.response.status === 409) {
-    //     setErrMsg("Username Taken");
-    //   } else {
-    //     setErrMsg("Registration Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
-    alert("Success");
+    // alert("Success");
   };
   return (
     <>
       <form onSubmit={handleSubmit} className="">
         <div className="formControl flex flex-col gap-2">
-          <label htmlFor="mail">Email:</label>
-          <input
-            type="email"
-            name="mail"
-            id="mail"
-            autoComplete="off"
-            onChange={(e) => setMail(e.target.value)}
-            required
-            aria-invalid={validMail ? "false" : "true"}
-            aria-describedby="uidnote"
-            onFocus={() => setMailFocus(true)}
-            onBlur={() => setMailFocus(false)}
-            className="rounded-lg input p-1"
-          />
-          <p
-            id="uidnote"
-            className={mailFocus && mail && !validMail ? "" : "hidden"}
-          >
-            Please enter valid email address.
-          </p>
-        </div>
-        <div className="formControl flex flex-col gap-2">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">New password:</label>
           <input
             type="password"
             name="password"
@@ -149,18 +83,18 @@ const Register = (RegisterProps: RegisterProps) => {
           </p>
         </div>
         <button
-          disabled={!validMail || !validPwd || !validMatch ? true : false}
+          disabled={!(validPwd && validMatch) ? true : false}
           onClick={() => {
-            RegisterProps.setRegister(false);
-            RegisterProps.setSuccess(true);
+            ResetPwProps.setResetPw(false);
+            ResetPwProps.setSuccess(true);
           }}
           className="input w-full my-5 rounded-xl disabled:cursor-not-allowed disabled:brightness-50"
         >
-          Sign up
+          Change password
         </button>
       </form>
     </>
   );
 };
 
-export default Register;
+export default ResetPw;

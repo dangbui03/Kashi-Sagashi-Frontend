@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap");
 .animate-gradient {
-  background-size: 222%;
+  background-size: 300%;
   -webkit-animation: animatedgradient 3s ease infinite alternate;
   -moz-animation: animatedgradient 3s ease infinite alternate;
   animation: animatedgradient 3s ease infinite alternate;
@@ -21,6 +21,8 @@
 #grad {
   background-image: linear-gradient(to bottom right, #b6fffa, #98e4ff, #80b3ff, #687eff);
   z-index: -100;
+  height: 100vh;
+  width: 100vw;
 }
 
 #dark_grad {
@@ -88,8 +90,21 @@
   outline: none;
 }
 
+.input {
+  color: #b6fffa;
+  background-color: #80b3ff;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.tooltip {
+  color: #b6fffa;
+}
+
 .search {
-  height: 80vh;
+  height: 10vh;
 }
 
 .nav_bar {
@@ -105,12 +120,17 @@
   border-end-start-radius: 1rem;
 }
 
-.view_font {
-  font-family: "Tilt Neon", sans-serif;
+.song {
+  width: 50rem;
 }
 
-.br-50 {
-  filter: blur(10px);
+.song_field {
+  color: #ffecec;
+  background-color: #ff78c4;
+}
+
+.view_font {
+  font-family: "Tilt Neon", sans-serif;
 }
 
 @tailwind base;
