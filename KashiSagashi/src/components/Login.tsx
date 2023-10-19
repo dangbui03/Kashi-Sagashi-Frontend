@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { CookiesProvider, useCookies } from "react-cookie";
+import { Tooltip } from "@material-tailwind/react";
+
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export type LoginProps = {
@@ -67,28 +69,32 @@ const Login = (LoginProps: LoginProps) => {
   return (
     <CookiesProvider>
       <form onSubmit={handleSubmit} className="w-full">
-        <div className="formControl flex flex-col gap-2">
-          <label htmlFor="mail">Email:</label>
-          <input
-            type="email"
-            name="mail"
-            id="mail"
-            autoComplete="off"
-            onChange={(e) => setMail(e.target.value)}
-            required
-            aria-invalid={validMail ? "false" : "true"}
-            aria-describedby="uidnote"
-            onFocus={() => setMailFocus(true)}
-            onBlur={() => setMailFocus(false)}
-            className="rounded-lg input p-1"
-          />
-          <p
-            id="uidnote"
-            className={mailFocus && mail && !validMail ? "" : "hidden"}
-          >
-            Please enter valid email address.
-          </p>
-        </div>
+        <Tooltip
+          content="Please enter valid email address."
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0, y: 25 },
+          }}
+          placement="right-end"
+          className="tooltip bg-dark-blue p-2 z-50"
+        >
+          <div className="formControl flex flex-col gap-2">
+            <label htmlFor="mail">Email:</label>
+            <input
+              type="email"
+              name="mail"
+              id="mail"
+              autoComplete="off"
+              onChange={(e) => setMail(e.target.value)}
+              required
+              aria-invalid={validMail ? "false" : "true"}
+              aria-describedby="uidnote"
+              onFocus={() => setMailFocus(true)}
+              onBlur={() => setMailFocus(false)}
+              className="rounded-lg input p-1"
+            />
+          </div>
+        </Tooltip>
         <div className="formControl flex flex-col gap-2">
           <label htmlFor="password">Password:</label>
           <input
@@ -113,6 +119,7 @@ const Login = (LoginProps: LoginProps) => {
         </button>
       </form>
       <p
+        className=" cursor-pointer"
         onClick={() => {
           LoginProps.setRegister(true);
           LoginProps.setLogin(false);
@@ -121,6 +128,7 @@ const Login = (LoginProps: LoginProps) => {
         Need an Account?
       </p>
       <p
+        className=" cursor-pointer"
         onClick={() => {
           LoginProps.setForgotPw(true);
           LoginProps.setLogin(false);

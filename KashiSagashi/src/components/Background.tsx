@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { CookiesProvider, useCookies } from "react-cookie";
 
@@ -21,7 +21,6 @@ const changeBackground = (notes: note[]) => {
 };
 
 const Background = () => {
-  const controls = useAnimationControls();
   const location = useLocation();
   let notes: note[] = [];
   changeBackground(notes);
@@ -39,10 +38,17 @@ const Background = () => {
       <motion.div className="flex fixed bottom-0 w-screen place-content-between -z-50">
         {notes.map((note) => {
           return (
-            <motion.div className="flex flex-col-reverse gap-2">
-              <p
+            <motion.div
+              className="flex flex-col-reverse gap-2"
+              initial={{ translateY: -50, scale: 10 }}
+              animate={{ translateY: 0, scale: 1 }}
+              transition={{
+                duration: 1,
+              }}
+            >
+              <motion.p
                 className={
-                  "text-center note_font " +
+                  "text-center note_font text-6xl " +
                   (note.number <= 3
                     ? "c_note1-3"
                     : note.number <= 6
@@ -53,9 +59,16 @@ const Background = () => {
                     ? "c_note10-12"
                     : "")
                 }
+                initial={{ translateY: -600, scale: 1 }}
+                animate={{ translateY: 0, scale: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: note.number * 2,
+                  type: "spring",
+                }}
               >
                 {note.character}
-              </p>
+              </motion.p>
               {note.number > 0 ? (
                 <motion.div
                   className="note note1-3 rounded-2xl"

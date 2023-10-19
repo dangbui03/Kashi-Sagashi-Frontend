@@ -1,6 +1,7 @@
 import { faL } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
+import { Tooltip } from "@material-tailwind/react";
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-_]).{8,64}$/;
@@ -76,78 +77,83 @@ const Register = (RegisterProps: RegisterProps) => {
   return (
     <>
       <form onSubmit={handleSubmit} className="">
-        <div className="formControl flex flex-col gap-2">
-          <label htmlFor="mail">Email:</label>
-          <input
-            type="email"
-            name="mail"
-            id="mail"
-            autoComplete="off"
-            onChange={(e) => setMail(e.target.value)}
-            required
-            aria-invalid={validMail ? "false" : "true"}
-            aria-describedby="uidnote"
-            onFocus={() => setMailFocus(true)}
-            onBlur={() => setMailFocus(false)}
-            className="rounded-lg input p-1"
-          />
-          <p
-            id="uidnote"
-            className={mailFocus && mail && !validMail ? "" : "hidden"}
-          >
-            Please enter valid email address.
-          </p>
-        </div>
-        <div className="formControl flex flex-col gap-2">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setPwd(e.target.value)}
-            required
-            aria-invalid={validPwd ? "false" : "true"}
-            aria-describedby="pwdnote"
-            onFocus={() => setPwdFocus(true)}
-            onBlur={() => setPwdFocus(false)}
-            className="input p-1 rounded-lg"
-          />
-          <p
-            id="pwdnote"
-            className={pwdFocus && pwd && !validPwd ? "" : "hidden"}
-          >
-            <ul>
-              At least:
-              <li>1 upper case English letter</li>
-              <li>1 lower case English letter</li>
-              <li>1 number</li>
-              <li>1 special character</li>
-            </ul>
-            <p>And having between 8 to 64 characters.</p>
-          </p>
-        </div>
-        <div className="formControl flex flex-col gap-2">
-          <label htmlFor="matchpwd">Confirm password:</label>
-          <input
-            type="password"
-            name="matchpwd"
-            id="matchpwd"
-            onChange={(e) => setMatchPwd(e.target.value)}
-            required
-            aria-invalid={validMatch ? "false" : "true"}
-            aria-describedby="confirmpwdnote"
-            onFocus={() => setMatchFocus(true)}
-            onBlur={() => setMatchFocus(false)}
-            className="input p-1 rounded-lg"
-          />
-          <p
-            id="pwdnote"
-            className={matchFocus && matchPwd && !validMatch ? "" : "hidden"}
-          >
-            <span> </span>
-            Must match the first password.
-          </p>
-        </div>
+        <Tooltip
+          content="Please enter valid email address."
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0, y: 25 },
+          }}
+          placement="right-end"
+          className="tooltip bg-dark-blue p-2 z-50"
+        >
+          <div className="formControl flex flex-col gap-2">
+            <label htmlFor="mail">Email:</label>
+            <input
+              type="email"
+              name="mail"
+              id="mail"
+              autoComplete="off"
+              onChange={(e) => setMail(e.target.value)}
+              required
+              aria-invalid={validMail ? "false" : "true"}
+              aria-describedby="uidnote"
+              onFocus={() => setMailFocus(true)}
+              onBlur={() => setMailFocus(false)}
+              className="rounded-lg input p-1"
+            />
+          </div>
+        </Tooltip>
+        <Tooltip
+          content="
+          At least: 1 upper case English letter, 1 lower case English letter, 1 number, 1 special character. And having between 8 to 64 characters."
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0, y: 25 },
+          }}
+          placement="right-end"
+          className="tooltip bg-dark-blue p-2 z-50"
+        >
+          <div className="formControl flex flex-col gap-2">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={(e) => setPwd(e.target.value)}
+              required
+              aria-invalid={validPwd ? "false" : "true"}
+              aria-describedby="pwdnote"
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
+              className="input p-1 rounded-lg"
+            />
+          </div>
+        </Tooltip>
+        <Tooltip
+          content="Must match the first password."
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0, y: 25 },
+          }}
+          placement="right-end"
+          className="tooltip bg-dark-blue p-2 z-50"
+        >
+          <div className="formControl flex flex-col gap-2">
+            <label htmlFor="matchpwd">Confirm password:</label>
+            <input
+              type="password"
+              name="matchpwd"
+              id="matchpwd"
+              onChange={(e) => setMatchPwd(e.target.value)}
+              required
+              aria-invalid={validMatch ? "false" : "true"}
+              aria-describedby="confirmpwdnote"
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
+              className="input p-1 rounded-lg"
+            />
+          </div>
+        </Tooltip>
         <button
           disabled={!validMail || !validPwd || !validMatch ? true : false}
           onClick={() => {

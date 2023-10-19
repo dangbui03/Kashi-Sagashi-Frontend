@@ -7,6 +7,7 @@ import { SearchBar } from "./SearchBar";
 import SongView from "./SongView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { motion, stagger } from "framer-motion";
 
 export type SongViewProps = {
   songs: song[];
@@ -21,11 +22,15 @@ const SongsView = (SongViewProps: SongViewProps) => {
           <div className="translate-y-40 z-20">
             <SearchBar search="aaaa" />
           </div>
-          <ul className="translate-y-32 flex flex-col items-center gap-5 z-20">
-            {songs.map((song) => {
-              return <SongView song={song} />;
+          <motion.ul className="translate-y-32 flex flex-col items-center gap-5 z-20">
+            {songs.map((song, i) => {
+              return (
+                <div>
+                  <SongView song={song} key={i} />
+                </div>
+              );
             })}
-          </ul>
+          </motion.ul>
         </div>
       ) : (
         <div className="flex flex-col">

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { song } from "../model/Song";
+import { motion } from "framer-motion";
+import { delay } from "framer-motion/dom";
 
 export type SongViewProps = {
   song: song;
@@ -16,12 +18,18 @@ const SongView = (SongViewProps: SongViewProps) => {
   };
   return (
     <>
-      <li
+      <motion.li
         className="song overflow-hidden rounded-xl p-5 cursor-pointer flex flex-col gap-2"
         style={{ color: "#b6fffa", backgroundColor: "#687eff" }}
-        onClick={() =>
-          setSong({ ...song, extendedView: toggleExtendedView(song) })
-        }
+        onClick={() => {
+          if (!song.extendedView) setSong({ ...song, extendedView: true });
+        }}
+        initial={{ translateY: 50, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          duration: 0.2,
+          delay: Math.random() * 0.5,
+        }}
       >
         <p>
           Name:{" "}
@@ -75,11 +83,17 @@ const SongView = (SongViewProps: SongViewProps) => {
               })}
             </ul>
             <p className="song_field p-1 rounded-xl ml-3">{song.lyric}</p>
+            <button
+              onClick={() => setSong({ ...song, extendedView: false })}
+              className="input w-full my-5 rounded-xl"
+            >
+              Show less
+            </button>
           </div>
         ) : (
           <div></div>
         )}
-      </li>
+      </motion.li>
     </>
   );
 };
