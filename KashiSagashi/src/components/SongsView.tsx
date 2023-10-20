@@ -9,12 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { motion, stagger } from "framer-motion";
 
-export type SongViewProps = {
+export type SongsViewProps = {
   songs: song[];
   verify?: boolean;
 };
-const SongsView = (SongViewProps: SongViewProps) => {
-  const [songs, setSongs] = useState(SongViewProps.songs);
+const SongsView = (SongsViewProps: SongsViewProps) => {
+  const [songs, setSongs] = useState(SongsViewProps.songs);
   return (
     <section className="flex-col">
       {songs.length > 0 ? (
@@ -26,7 +26,11 @@ const SongsView = (SongViewProps: SongViewProps) => {
             {songs.map((song, i) => {
               return (
                 <div>
-                  <SongView song={song} key={i} />
+                  <SongView
+                    song={song}
+                    key={i}
+                    verify={SongsViewProps.verify}
+                  />
                 </div>
               );
             })}

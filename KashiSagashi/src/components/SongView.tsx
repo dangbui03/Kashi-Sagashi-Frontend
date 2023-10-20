@@ -5,6 +5,7 @@ import { delay } from "framer-motion/dom";
 
 export type SongViewProps = {
   song: song;
+  verify?: boolean;
 };
 
 const SongView = (SongViewProps: SongViewProps) => {
@@ -83,12 +84,25 @@ const SongView = (SongViewProps: SongViewProps) => {
               })}
             </ul>
             <p className="song_field p-1 rounded-xl ml-3">{song.lyric}</p>
-            <button
-              onClick={() => setSong({ ...song, extendedView: false })}
-              className="input w-full my-5 rounded-xl"
-            >
-              Show less
-            </button>
+            <div className="flex w-full gap-3">
+              <button
+                onClick={() => setSong({ ...song, extendedView: false })}
+                className="input my-5 rounded-xl flex-grow"
+              >
+                Show less
+              </button>
+              {SongViewProps.verify ? (
+                <button
+                  onClick={() => setSong({ ...song, approved: true })}
+                  className="input my-5 rounded-xl flex-grow disabled:brightness-50"
+                  disabled={song.approved}
+                >
+                  {song.approved ? "Approved" : "Approve"}
+                </button>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         ) : (
           <div></div>

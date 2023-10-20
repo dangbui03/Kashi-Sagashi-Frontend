@@ -11,4 +11,5 @@ export type song = {
   artist: artist[] | string[];
   band: band[] | string[];
   extendedView?: boolean;
+  approved?: boolean;
 };

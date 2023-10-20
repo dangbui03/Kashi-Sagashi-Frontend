@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Background from "./components/Background";
 import { Routes, Route, Link } from "react-router-dom";
 import AddSong from "./components/AddSong";
@@ -59,7 +59,13 @@ function App() {
       band: [],
     },
   ];
-  const [cookies, setCookies] = useCookies(["search"]);
+  const [cookies, setCookies] = useCookies(["search", "user", "admin"]);
+
+  useEffect(() => {
+    setCookies("admin", false);
+    setCookies("search", "");
+    setCookies("user", false);
+  }, []);
 
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(false);
@@ -246,7 +252,10 @@ function App() {
               path="verifySong"
               element={<SongsView songs={songs} verify={true} />}
             />
-            <Route path="searchSong" element={<SongsView songs={songs} />} />
+            <Route
+              path="searchSong"
+              element={<SongsView songs={songs} verify={false} />}
+            />
             <Route path="/" element={<SearchBar search={cookies.search} />} />
           </Routes>
           <Background />
