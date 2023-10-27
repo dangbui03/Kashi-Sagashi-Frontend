@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Register from "./Register";
 import Login from "./Login";
@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction } from "react";
 import { Tooltip, Button } from "@material-tailwind/react";
 import { CookiesProvider, useCookies } from "react-cookie";
+import { Location } from "react-router-dom";
 
 export type NavProps = {
   register: boolean;
@@ -22,12 +23,13 @@ export type NavProps = {
 
 const Nav = (NavProps: NavProps) => {
   const [cookies, setCookie] = useCookies(["user", "admin"]);
+  const location = useLocation();
   return (
     <CookiesProvider>
       <nav className="flex justify-end view_font">
         {cookies.user === false ? (
           <ul
-            className="flex justify-between gap-5 fixed tool_bar pb-1 pl-3 -translate-x-10 pr-10 text-xl z-30"
+            className="flex justify-between gap-5 fixed tool_bar pb-1 pl-3 -translate-x-10 pr-10 text-base z-30 sm:text-xl"
             style={{ color: "#b6fffa", backgroundColor: "#687eff" }}
           >
             <li className="flex">
@@ -131,6 +133,18 @@ const Nav = (NavProps: NavProps) => {
               )}
             </ul>
           </div>
+        ) : (
+          <></>
+        )}
+        {location.pathname === "/searchSong" ||
+        location.pathname === "/verifySong" ? (
+          <a
+            href="#search-bar"
+            className="z-30 fixed right-0 -translate-x-60 to_top rounded-full p-5"
+            style={{ color: "#b6fffa", backgroundColor: "#687eff" }}
+          >
+            <FontAwesomeIcon icon="up-long" size="2xl" />
+          </a>
         ) : (
           <></>
         )}

@@ -6,6 +6,10 @@ export default {
       colors: {
         "dark-blue": "#687eff",
       },
+      width: {
+        128: "32rem",
+        "40vw": "40vw",
+      },
     },
   },
   plugins: [],

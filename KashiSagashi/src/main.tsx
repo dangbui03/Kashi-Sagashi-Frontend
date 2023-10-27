@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faMagnifyingGlass,
   faGear,
@@ -13,6 +13,7 @@ import {
   faRightFromBracket,
   faCircleCheck,
   faLeftLong,
+  faUpLong,
 } from "@fortawesome/free-solid-svg-icons";
 import { CookiesProvider } from "react-cookie";
 
@@ -24,7 +25,9 @@ library.add(
   faPlus,
   faRightFromBracket,
   faCircleCheck,
-  faLeftLong
+  faLeftLong,
+  faGoogle,
+  faUpLong
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

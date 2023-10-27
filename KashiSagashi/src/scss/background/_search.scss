@@ -1,5 +1,4 @@
 .search_form {
-  width: 40vw;
   background-color: #687eff;
   padding: 0.5rem 1rem;
 }
@@ -13,4 +12,10 @@
 }
 .search_bar:focus {
   outline: none;
+}
+.to_top {
+  --tw-translate-y: 36rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }

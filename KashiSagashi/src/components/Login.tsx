@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { Tooltip } from "@material-tailwind/react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export type LoginProps = {
@@ -136,6 +136,15 @@ const Login = (LoginProps: LoginProps) => {
       >
         Forgot password?
       </p>
+      <div className="formControl flex flex-col items-center gap-4 cursor-pointer my-3">
+        <p>OR</p>
+        <FontAwesomeIcon
+          icon="fa-brands fa-google"
+          size="2xl"
+          style={{ color: "#b6fffa", backgroundColor: "#80b3ff" }}
+          className="rounded-xl w-10 p-2"
+        />
+      </div>
     </CookiesProvider>
   );
 };

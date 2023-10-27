@@ -200,7 +200,7 @@ function App() {
             resetPwSuccess ||
             addSongSuccess ||
             addSong
-              ? "absolute h-screen w-screen top-0 right-0 bg-black opacity-50 z-40 pointer-events-none"
+              ? "fixed h-screen w-screen top-0 right-0 bg-black opacity-50 z-40 pointer-events-none"
               : ""
           }
         ></div>

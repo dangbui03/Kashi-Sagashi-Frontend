@@ -29,7 +29,8 @@ export const SearchBar = (SearchBarProps: SearchBarProps) => {
             <FontAwesomeIcon
               icon="left-long"
               size="2xl"
-              style={{ color: "#687eff" }}
+              className="rounded-full p-2"
+              style={{ color: "#b6fffa", backgroundColor: "#687eff" }}
             />
           </Link>
         ) : (
@@ -37,7 +38,7 @@ export const SearchBar = (SearchBarProps: SearchBarProps) => {
         )}
         <form
           onSubmit={handleSubmit}
-          className="flex search_form rounded-2xl place-content-between gap-2"
+          className="flex search_form rounded-2xl place-content-between gap-2 sm:w-40vw w-72"
         >
           <input
             type="text"
@@ -46,8 +47,9 @@ export const SearchBar = (SearchBarProps: SearchBarProps) => {
               setSearch(e.target.value);
               setCookie("search", e.target.value, { path: "/" });
             }}
-            className="bg-transparent search_bar"
+            className="bg-transparent search_bar scroll-mt-9"
             value={cookies.search}
+            id="search-bar"
           />
           <button>
             <FontAwesomeIcon

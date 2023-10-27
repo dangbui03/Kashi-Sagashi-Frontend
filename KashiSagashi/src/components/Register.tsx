@@ -2,6 +2,7 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { Tooltip } from "@material-tailwind/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PWD_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-_]).{8,64}$/;
@@ -164,6 +165,15 @@ const Register = (RegisterProps: RegisterProps) => {
         >
           Sign up
         </button>
+        <div className="formControl flex flex-col items-center gap-4 cursor-pointer">
+          <p>OR</p>
+          <FontAwesomeIcon
+            icon="fa-brands fa-google"
+            size="2xl"
+            style={{ color: "#b6fffa", backgroundColor: "#80b3ff" }}
+            className="rounded-xl w-10 p-2"
+          />
+        </div>
       </form>
     </>
   );
