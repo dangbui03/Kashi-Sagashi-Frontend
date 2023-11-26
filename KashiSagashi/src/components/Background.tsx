@@ -48,7 +48,7 @@ const Background = () => {
             >
               <motion.p
                 className={
-                  "text-center note_font text-3xl sm:text-3xl " +
+                  "text-center note_font text-3xl sm:text-8xl " +
                   (note.number <= 3
                     ? "c_note1-3"
                     : note.number <= 6
