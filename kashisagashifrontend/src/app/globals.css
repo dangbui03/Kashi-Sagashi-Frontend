@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Header */
+#logo {
+  text-shadow: 8px 8px black;
+}
+
+#navbar{
+  text-shadow: 5px 5px black;
+}
+
+@keyframes routeActive {
+  from {translate: 0px 0px; text-shadow: 5px 5px black; font-size: 1.5rem; line-height: 2rem;}
+  to {translate: -15px -15px; text-shadow: 15px 15px black; font-size: 2rem; line-height: 2.5rem;}
+}
+
+.active-route {
+ animation-name: routeActive;
+ animation-duration: 1s;
+ animation-fill-mode: forwards;
+}
+
+/* Page */
+#main-page {
+  max-height: calc(100vh - 14rem);
+  grid-template-areas: "word1 quote page" "word2 quote page" "word3 quote page";
+  grid-template-columns: 2fr 1fr 4fr;
+}
+
+#word1 {
+  grid-area: word1;
+  align-self: center;
+
+}
+
+#word2 {
+  grid-area: word2;
+  align-self: center;
+  justify-self: end;
+}
+
+#word3 {
+  grid-area: word3;
+  align-self: center;
+}
+
+.quote {
+  grid-area: quote;
+}
+
+.page {
+  grid-area: page;
+  min-height: calc(100vh - 10rem);
+}
+
+#search-bar{
+  width: clamp(40vw, 70vw ,calc(100vw - 45rem));
+}
+
+/* Footer */
+#footer {
+  text-shadow: 5px 5px black;
+}
