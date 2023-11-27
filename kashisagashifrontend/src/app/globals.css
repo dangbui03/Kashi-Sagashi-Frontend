@@ -74,13 +74,17 @@ body {
   grid-area: quote;
 }
 
-.page {
+.search-section {
   grid-area: page;
   min-height: calc(100vh - 10rem);
 }
 
-#search-bar{
-  width: clamp(40vw, 70vw ,calc(100vw - 45rem));
+#search-bar {
+  width: clamp(40vw, 70vw ,calc(100vw - 39rem));
+}
+
+#search-result {
+  height: calc(100vh - 14rem);
 }
 
 /* Footer */

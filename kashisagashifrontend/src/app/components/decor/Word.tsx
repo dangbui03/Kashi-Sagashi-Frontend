@@ -2,6 +2,8 @@
 
 import { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
+import { usePathname } from "next/navigation";
+import words from "../../../data/defaultWords.json";
 
 const another_danger = localFont({
   src: "../../../../public/another_danger.otf",
@@ -45,11 +47,24 @@ const fonts: NextFont[] = [
   varsity_regular,
 ];
 
-type Props = { word: string; id: string };
+const get_words = (wordType: string) => {
+  const res =
+    wordType === "/"
+      ? words.words
+      : wordType === "/signIn"
+      ? words.signInWords
+      : words.words;
+  return res;
+};
 
-const Word = ({ word, id }: Props) => {
+type Props = { id: string };
+
+const Word = ({ id }: Props) => {
+  const router = usePathname();
   const color = colors[Math.floor(Math.random() * colors.length)];
   const font = fonts[Math.floor(Math.random() * fonts.length)];
+  const words = get_words(router);
+  const word = words[Math.floor(Math.random() * words.length)];
   return (
     <p
       className={
