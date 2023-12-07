@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Averia_Libre } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
 import Background from "./components/Background";
 import Footer from "./components/footer/Footer";
-import Word from "./components/decor/Word";
-import Quote from "./components/decor/Quote";
-import dynamic from "next/dynamic";
-
-const NoSSRWord = dynamic(() => import("./components/decor/Word"), {
-  ssr: false,
-});
-const NoSSRQuote = dynamic(() => import("./components/decor/Quote"), {
-  ssr: false,
-});
+import AuthContextProvider from "./context/AuthContext";
+import SearchContextProvider from "./context/SearchContext";
+import UnverifiedSongContextProvider from "./context/UnverifiedSongContext";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const averia_libre = Averia_Libre({ subsets: ["latin"], weight: "400" });
 export const metadata: Metadata = {
   title: "Kashi Sagashi",
   description: "Search song by lyric website",
@@ -28,19 +21,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Background />
-        <Header />
-        <main className="grid w-screen gap-x-10" id="main-page">
-          <NoSSRWord id="word1" />
-          <NoSSRWord id="word2" />
-          <NoSSRWord id="word3" />
-          <NoSSRQuote />
-          <section className="search-section">{children}</section>
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <UnverifiedSongContextProvider>
+      <SearchContextProvider>
+        <AuthContextProvider>
+          <html lang="en">
+            <body className={averia_libre.className}>
+              <Background />
+              <Header />
+              {children}
+              <Footer />
+            </body>
+          </html>
+        </AuthContextProvider>
+      </SearchContextProvider>
+    </UnverifiedSongContextProvider>
   );
 }

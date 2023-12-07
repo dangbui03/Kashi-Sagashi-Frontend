@@ -1,32 +1,32 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
-
 type Props = { song: Song };
 
 const SearchItem = ({ song }: Props) => {
   return (
-    <li
-      className="flex bg-white p-2 text-xl rounded-xl text-black h-96 m-2 gap-2"
-      style={{ boxShadow: "5px 5px black", scrollSnapAlign: "start" }}
-    >
-      <div>
-        <h3 className=" whitespace-nowrap">{song.Name}</h3>
-        <p className=" whitespace-nowrap">{song.Artist}</p>
+    <>
+      <div className=" overflow-x-scroll w-60 h-60 lg:w-80">
+        <h3 className=" whitespace-nowrap">Name: {song.Name}</h3>
+        <p className=" whitespace-nowrap">Artist: {song.Artist}</p>
+        <p className=" whitespace-nowrap">Album: {song.Album}</p>
         <p>
-          <a href={song.Link}>
-            <FontAwesomeIcon icon={faSpotify} />
-          </a>
+          {song.Link !== " " ? (
+            <a href={song.Link}>
+              <FontAwesomeIcon icon={faSpotify} size="2xl" />
+            </a>
+          ) : (
+            <></>
+          )}
         </p>
       </div>
-      <div>
-        <p className=" whitespace-nowrap">{song.Album}</p>
-        <p className=" whitespace-nowrap">{song.Release_Date.toString()}</p>
+      <div className="overflow-y-scroll w-96 h-80 lg:w-160">
+        <h3>Lyrics:</h3>
+        <p className="" style={{ whiteSpace: "pre-line" }}>
+          {song.Lyrics}
+        </p>
       </div>
-      <div className="overflow-y-scroll">
-        <p>{song.Lyrics}</p>
-      </div>
-    </li>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { NextFont } from "next/dist/compiled/@next/font";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
 import words from "../../../data/defaultWords.json";
+import { motion, AnimatePresence } from "framer-motion";
 
 const another_danger = localFont({
   src: "../../../../public/another_danger.otf",
@@ -47,43 +48,75 @@ const fonts: NextFont[] = [
   varsity_regular,
 ];
 
+const WordVars = {
+  initial: {},
+  animate: {},
+};
+
 const get_words = (wordType: string) => {
   const res =
     wordType === "/"
       ? words.words
       : wordType === "/signIn"
       ? words.signInWords
+      : wordType === "/signUp"
+      ? words.signUpWords
+      : wordType === "/submitSong"
+      ? words.submitSongWords
+      : wordType === "/verifySong"
+      ? words.verifySongWords
+      : wordType === "/verifyEmail"
+      ? words.verifyEmailWords
+      : wordType === "/resetPassword"
+      ? words.resetPasswordWords
       : words.words;
   return res;
 };
 
-type Props = { id: string };
+type Props = { id: number; specificWord?: string; size?: number };
 
-const Word = ({ id }: Props) => {
+const Word = ({ id, specificWord, size = 8 }: Props) => {
   const router = usePathname();
   const color = colors[Math.floor(Math.random() * colors.length)];
   const font = fonts[Math.floor(Math.random() * fonts.length)];
   const words = get_words(router);
-  const word = words[Math.floor(Math.random() * words.length)];
+  const word = specificWord
+    ? specificWord
+    : words[Math.floor(Math.random() * words.length)];
   return (
-    <p
-      className={
-        font.className +
-        " block tracking-wider " +
-        (word.length > 4
-          ? word.length > 6
-            ? "text-5xl"
-            : "text-7xl"
-          : "text-8xl")
-      }
-      id={id}
-      style={{
-        color: color.color,
-        textShadow: `5px 5px ${color.shadow_color}`,
-      }}
-    >
-      {word.toUpperCase()}
-    </p>
+    <AnimatePresence>
+      <motion.p
+        className={
+          font.className +
+          " block tracking-wider " +
+          (word.length > 4
+            ? word.length > 6
+              ? `text-${size - 2}xl`
+              : `text-${size - 1}xl`
+            : `text-${size}xl`)
+        }
+        id={`word${id.toString()}`}
+        initial={{
+          x: 10,
+          y: 10,
+          color: "rgb(217 119 6)",
+          textShadow: "0px 0px black",
+          opacity: 0,
+        }}
+        animate={{
+          x: 0,
+          y: 0,
+          color: color.color,
+          textShadow: `5px 5px ${color.shadow_color}`,
+          opacity: 1,
+          transition: {
+            delay: id * 0.5,
+          },
+        }}
+      >
+        {word.toUpperCase()}
+      </motion.p>
+    </AnimatePresence>
   );
 };
 

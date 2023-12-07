@@ -1,15 +1,10 @@
-"use client";
-
 import Searchbar from "./Searchbar";
-import SearchResult from "./SearchResult";
+type Props = { searchLyric: string };
 
-type Props = { searchLyric: string; songs: Song[] };
-
-export default function Search({ searchLyric, songs }: Props) {
+export default function Search({ searchLyric }: Props) {
   return (
-    <section className="mr-10">
+    <section className="">
       <Searchbar searchLyric={searchLyric} />
-      <SearchResult songs={songs} />
     </section>
   );
 }
