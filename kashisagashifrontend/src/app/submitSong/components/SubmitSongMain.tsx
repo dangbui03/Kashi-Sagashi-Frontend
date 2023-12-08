@@ -96,7 +96,7 @@ export default function SubmitSongMain() {
           if (res.savedSong) {
             setSuccess(true);
           } else {
-            alert(res.error);
+            alert(res.error || res.message);
           }
         }}
         className=" flex flex-col m-5 p-5 gap-10 bg-white text-black rounded-lg w-96 text-xl"

@@ -10,6 +10,7 @@ export default async function VerifyEmail(formData: FormData) {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   return res.json();
 }

@@ -9,6 +9,7 @@ import useAuth from "@/app/hook/useAuth";
 import dynamic from "next/dynamic";
 import { AuthContextType } from "@/app/context/AuthContext";
 import { ResetPasswordButton } from "./ResetPasswordButton";
+import Link from "next/link";
 
 const NoSSRWord = dynamic(() => import("@/app/components/decor/Word"), {
   ssr: false,
@@ -43,6 +44,7 @@ export default function ResetPasswordMain() {
   const [errorMessage, setErrorMessage] = useState<React.JSX.Element | null>(
     null
   );
+  const [success, setSuccess] = useState(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const otpRef = useRef<HTMLInputElement>(null);
@@ -112,68 +114,58 @@ export default function ResetPasswordMain() {
 
   return (
     <>
-      <motion.form
-        variants={FormVars}
-        initial="initial"
-        animate="animate"
-        action={async (formData) => {
-          const res = await ResetPasswordAction(formData);
-          if (res.user) {
-            router.push("/resetPass");
-            const user: User = {
-              email: res.user.email,
-              password: res.user.password,
-              username: res.user.username,
-              loggedIn: false,
-              roles: {
-                User: res.user.roles.User,
-                Admin: res.user.roles.Admin,
-              },
-              verified: res.user.verified,
-            };
-            setAuthContext(user);
-          } else {
-            alert(res.message);
-          }
-        }}
-        className=" flex flex-col m-5 p-5 gap-10 bg-white text-black rounded-lg w-96 text-xl"
-        style={{ boxShadow: "5px 5px black" }}
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          ref={emailRef}
-        />
-        <input
-          type="text"
-          placeholder="OTP"
-          name="otp"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          ref={otpRef}
-        />
-        <input
-          type="password"
-          placeholder="New Password"
-          name="newPassword"
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          ref={pwRef}
-        />
-        <input
-          type="password"
-          placeholder="Confirm password"
-          name="confirm_password"
-          value={cpw}
-          onChange={(e) => setCpw(e.target.value)}
-          ref={cpwRef}
-        />
-        <ResetPasswordButton error={error} />
-      </motion.form>
       <AnimatePresence>
+        {!success && (
+          <motion.form
+            variants={FormVars}
+            initial="initial"
+            animate="animate"
+            action={async (formData) => {
+              const res = await ResetPasswordAction(formData);
+              if (res.passwordreset) {
+                setSuccess(true);
+              } else {
+                alert(res.message);
+              }
+            }}
+            className=" flex flex-col m-5 p-5 gap-10 bg-white text-black rounded-lg w-96 text-xl"
+            style={{ boxShadow: "5px 5px black" }}
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              ref={emailRef}
+            />
+            <input
+              type="text"
+              placeholder="OTP"
+              name="otp"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              ref={otpRef}
+            />
+            <input
+              type="password"
+              placeholder="New Password"
+              name="newPassword"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              ref={pwRef}
+            />
+            <input
+              type="password"
+              placeholder="Confirm password"
+              name="confirm_password"
+              value={cpw}
+              onChange={(e) => setCpw(e.target.value)}
+              ref={cpwRef}
+            />
+            <ResetPasswordButton error={error} />
+          </motion.form>
+        )}
         <motion.div
           variants={FormVars}
           initial="initial"
@@ -183,7 +175,19 @@ export default function ResetPasswordMain() {
           }
           style={{ boxShadow: "5px 5px black" }}
         >
-          {errorMessage ? errorMessage : <NoSSRWord id={0} />}
+          {success ? (
+            <>
+              <NoSSRWord id={0} specificWord="Success" />
+              <p className="text-center">
+                Password reset <br />
+                <Link href={"/signIn"}>Go to sign in page ➡️</Link>
+              </p>
+            </>
+          ) : errorMessage ? (
+            errorMessage
+          ) : (
+            <NoSSRWord id={0} />
+          )}
         </motion.div>
       </AnimatePresence>
     </>

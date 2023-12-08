@@ -73,9 +73,9 @@ const get_words = (wordType: string) => {
   return res;
 };
 
-type Props = { id: number; specificWord?: string; size?: number };
+type Props = { id: number; specificWord?: string };
 
-const Word = ({ id, specificWord, size = 8 }: Props) => {
+const Word = ({ id, specificWord }: Props) => {
   const router = usePathname();
   const color = colors[Math.floor(Math.random() * colors.length)];
   const font = fonts[Math.floor(Math.random() * fonts.length)];
@@ -85,37 +85,71 @@ const Word = ({ id, specificWord, size = 8 }: Props) => {
     : words[Math.floor(Math.random() * words.length)];
   return (
     <AnimatePresence>
-      <motion.p
-        className={
-          font.className +
-          " block tracking-wider " +
-          (word.length > 4
-            ? word.length > 6
-              ? `text-${size - 2}xl`
-              : `text-${size - 1}xl`
-            : `text-${size}xl`)
-        }
-        id={`word${id.toString()}`}
-        initial={{
-          x: 10,
-          y: 10,
-          color: "rgb(217 119 6)",
-          textShadow: "0px 0px black",
-          opacity: 0,
-        }}
-        animate={{
-          x: 0,
-          y: 0,
-          color: color.color,
-          textShadow: `5px 5px ${color.shadow_color}`,
-          opacity: 1,
-          transition: {
-            delay: id * 0.5,
-          },
-        }}
-      >
-        {word.toUpperCase()}
-      </motion.p>
+      {specificWord ? (
+        <motion.p
+          className={
+            font.className +
+            " block tracking-wider " +
+            (word.length > 4
+              ? word.length > 6
+                ? `text-4xl`
+                : `text-5xl`
+              : `text-6xl`)
+          }
+          id={`word${id.toString()}`}
+          initial={{
+            x: 10,
+            y: 10,
+            color: "rgb(217 119 6)",
+            textShadow: "0px 0px black",
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            y: 0,
+            color: color.color,
+            textShadow: `5px 5px ${color.shadow_color}`,
+            opacity: 1,
+            transition: {
+              delay: id * 0.5,
+            },
+          }}
+        >
+          {word.toUpperCase()}
+        </motion.p>
+      ) : (
+        <motion.p
+          className={
+            font.className +
+            " block tracking-wider " +
+            (word.length > 4
+              ? word.length > 6
+                ? `text-5xl`
+                : `text-7xl`
+              : `text-8xl`)
+          }
+          id={`word${id.toString()}`}
+          initial={{
+            x: 10,
+            y: 10,
+            color: "rgb(217 119 6)",
+            textShadow: "0px 0px black",
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            y: 0,
+            color: color.color,
+            textShadow: `5px 5px ${color.shadow_color}`,
+            opacity: 1,
+            transition: {
+              delay: id * 0.5,
+            },
+          }}
+        >
+          {word.toUpperCase()}
+        </motion.p>
+      )}
     </AnimatePresence>
   );
 };

@@ -8,14 +8,7 @@ export default async function FindUnverifiedSongAction(token: string) {
       Authorization: `Bearer ${token}`,
       "Access-Control-Allow-Credentials": "true",
     },
-  });
-  console.log({
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-      "Access-Control-Allow-Credentials": "true",
-    },
+    cache: "no-store",
   });
   return res.json();
 }

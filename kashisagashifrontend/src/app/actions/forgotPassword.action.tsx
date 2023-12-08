@@ -10,6 +10,7 @@ export default async function ForgotPasswordAction(formData: FormData) {
       "Content-Type": "application/json",
       "Access-Control-Allow-Credentials": "true",
     },
+    cache: "no-store",
   });
   return res.json();
 }

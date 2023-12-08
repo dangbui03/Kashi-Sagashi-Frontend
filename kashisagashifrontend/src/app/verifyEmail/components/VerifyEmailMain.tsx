@@ -152,7 +152,7 @@ export default function VerifyEmailMain() {
             errorMessage
           ) : (
             <NoSSRWord id={0} />
-          )}{" "}
+          )}
         </motion.div>
       </AnimatePresence>
     </>

@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import AuthContextProvider from "./context/AuthContext";
 import SearchContextProvider from "./context/SearchContext";
 import UnverifiedSongContextProvider from "./context/UnverifiedSongContext";
+import UnverifiedSongOptiContextProvider from "./context/UnverifiedSongOptiContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const averia_libre = Averia_Libre({ subsets: ["latin"], weight: "400" });
@@ -22,18 +23,20 @@ export default async function RootLayout({
 }) {
   return (
     <UnverifiedSongContextProvider>
-      <SearchContextProvider>
-        <AuthContextProvider>
-          <html lang="en">
-            <body className={averia_libre.className}>
-              <Background />
-              <Header />
-              {children}
-              <Footer />
-            </body>
-          </html>
-        </AuthContextProvider>
-      </SearchContextProvider>
+      <UnverifiedSongOptiContextProvider>
+        <SearchContextProvider>
+          <AuthContextProvider>
+            <html lang="en">
+              <body className={averia_libre.className}>
+                <Background />
+                <Header />
+                {children}
+                <Footer />
+              </body>
+            </html>
+          </AuthContextProvider>
+        </SearchContextProvider>
+      </UnverifiedSongOptiContextProvider>
     </UnverifiedSongContextProvider>
   );
 }

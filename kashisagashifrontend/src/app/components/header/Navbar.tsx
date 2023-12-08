@@ -99,7 +99,7 @@ export default function Navbar() {
       <AnimatePresence>
         {authContext?.loggedIn && (
           <motion.section variants={NavItemVars} className="">
-            <NoSSRWord id={0} specificWord={authContext?.username} size={5} />
+            <NoSSRWord id={0} specificWord={authContext?.username} />
           </motion.section>
         )}
       </AnimatePresence>

@@ -63,7 +63,10 @@ export default function UnverifiedSongList() {
       animate="animate"
       exit="exit"
       className="flex flex-col overflow-y-scroll search-result whitespace-normal mt-5"
-      style={{ scrollSnapType: "y mandatory", scrollPadding: "10px" }}
+      style={{
+        scrollSnapType: "y mandatory",
+        scrollPadding: "10px",
+      }}
     >
       {unverifiedSongContext.map((song) => (
         <motion.li

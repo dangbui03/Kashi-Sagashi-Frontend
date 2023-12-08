@@ -12,6 +12,7 @@ export default async function ResetPasswordAction(formData: FormData) {
       "Content-Type": "application/json",
     },
     credentials: "include",
+    cache: "no-store",
   });
   return res.json();
 }

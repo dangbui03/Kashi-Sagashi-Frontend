@@ -24,6 +24,8 @@ export default async function AddSongAction(
     },
   });
 
+  console.log(res);
+
   revalidatePath("/", "layout");
   return res.json();
 }

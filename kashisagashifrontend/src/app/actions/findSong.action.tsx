@@ -8,7 +8,7 @@ export default async function findSong(formData: FormData) {
       headers: {
         "Content-Type": "application/json",
       },
-      next: { revalidate: 60 },
+      next: { revalidate: 30 },
     }
   );
   return res.json();

@@ -9,6 +9,7 @@ export default async function ResendOtp(formData: FormData) {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   return res.json();
 }

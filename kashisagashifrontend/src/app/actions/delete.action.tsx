@@ -1,8 +1,8 @@
 "use server";
 
-export default async function verifySongAction(Name: string, token: string) {
-  const res = await fetch(`${process.env.BASE_URL}/song/verified`, {
-    method: "PUT",
+export default async function deleteAction(Name: string, token: string) {
+  const res = await fetch(`${process.env.BASE_URL}/song/delete`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
